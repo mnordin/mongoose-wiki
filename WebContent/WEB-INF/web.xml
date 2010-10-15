@@ -29,4 +29,14 @@
     <servlet-name>articleTest</servlet-name>
     <url-pattern>/articleTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PagesServlet</display-name>
+    <servlet-name>PagesServlet</servlet-name>
+    <servlet-class>se.kyh.wiki.PagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PagesServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
 </web-app>
