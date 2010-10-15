@@ -13,20 +13,31 @@ public class Article {
 	
 	public Article(int id) {
 		this.setId(id);
-		ArrayList<String> article = this.getArticle(id);
+		ArrayList<String> article = this.getArticleById(id);
 		this.setTitle(article.get(0));
 		this.setBody(article.get(1));
 	}
 	
-	private ArrayList<String> getArticle(int id){
+	public Article(String title) {
+		this.setTitle(title);
+		String body = this.getArticleBodyByTitle(title);
+		this.setId(0);
+		this.setBody(body);
+	}
+
+	private ArrayList<String> getArticleById(int id){
 		DbConnection connection = new DbConnection();
 		ArrayList<String> article = new ArrayList<String>();
 		try {
 			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT * FROM article WHERE id = "+ id);
+			ResultSet result = query.executeQuery("SELECT title, body FROM article WHERE id = "+ id);
 			
-			article.add(result.getNString("title"));
-			article.add(result.getNString("body"));
+			while (result.next()) {
+				article.add(result.getString("title"));
+				article.add(result.getString("body"));
+			}
+			
+			connection.disconnect();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -34,6 +45,28 @@ public class Article {
 		}
 		
 		return article;
+		
+	}
+	
+	private String getArticleBodyByTitle(String title){
+		DbConnection connection = new DbConnection();
+		String body = null;
+		try {
+			Statement query = connection.connect().createStatement();
+			ResultSet result = query.executeQuery("SELECT body FROM article WHERE title = '" + title + "'");
+			
+			while (result.next()) {
+				body = result.getString("body");
+			}
+			
+			connection.disconnect();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return body;
 		
 	}
 	
