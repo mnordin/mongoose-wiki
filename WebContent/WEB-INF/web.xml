@@ -11,16 +11,6 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Wiki</display-name>
-    <servlet-name>Wiki</servlet-name>
-    <servlet-class>se.kyh.wiki.Wiki</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Wiki</servlet-name>
-    <url-pattern>/Wiki</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ArticleServlet</display-name>
     <servlet-name>ArticleServlet</servlet-name>
     <servlet-class>se.kyh.wiki.ArticleServlet</servlet-class>
@@ -28,5 +18,15 @@
   <servlet-mapping>
     <servlet-name>ArticleServlet</servlet-name>
     <url-pattern>/article/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>articleTest</display-name>
+    <servlet-name>articleTest</servlet-name>
+    <servlet-class>se.kyh.wiki.articleTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>articleTest</servlet-name>
+    <url-pattern>/articleTest</url-pattern>
   </servlet-mapping>
 </web-app>

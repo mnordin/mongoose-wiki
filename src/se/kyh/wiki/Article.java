@@ -1,30 +1,61 @@
 package se.kyh.wiki;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 public class Article {
 	
-	String article_title;
+	private int id;
+	private String title;
+	private String body;
 	
-	public Article(String string) {
-		this.article_title = string;
+	public Article(int id) {
+		this.setId(id);
+		ArrayList<String> article = this.getArticle(id);
+		this.setTitle(article.get(0));
+		this.setBody(article.get(1));
 	}
 	
+	private ArrayList<String> getArticle(int id){
+		DbConnection connection = new DbConnection();
+		ArrayList<String> article = new ArrayList<String>();
+		try {
+			Statement query = connection.connect().createStatement();
+			ResultSet result = query.executeQuery("SELECT * FROM article WHERE id = "+ id);
+			
+			article.add(result.getNString("title"));
+			article.add(result.getNString("body"));
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return article;
+		
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getTitle() {
-		return this.article_title;
+		return title;
 	}
-	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getBody() {
-		return "<p>Pellentesque habitant morbi tristique senectus et netus " +
-				"et malesuada fames ac turpis egestas. Vestibulum tortor quam" +
-				", feugiat vitae, ultricies eget, tempor sit amet, ante. Donec" +
-				" eu libero sit amet quam egestas semper. Aenean ultricies mi " +
-				"vitae est. Mauris placerat eleifend leo. Quisque sit amet est et" +
-				" sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum" +
-				" sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit" +
-				" eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus" +
-				" lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut" +
-				" felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas" +
-				" augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam" +
-				" dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>";
+		return body;
+	}
+	public void setBody(String body) {
+		this.body = body;
 	}
 	
+	
+
 }
