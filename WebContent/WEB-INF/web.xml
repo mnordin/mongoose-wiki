@@ -19,4 +19,14 @@
     <servlet-name>Wiki</servlet-name>
     <url-pattern>/Wiki</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleServlet</display-name>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>se.kyh.wiki.ArticleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/article/*</url-pattern>
+  </servlet-mapping>
 </web-app>
