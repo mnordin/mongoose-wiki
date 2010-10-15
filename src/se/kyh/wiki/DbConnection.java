@@ -7,22 +7,20 @@ import java.sql.SQLException;
 public class DbConnection {
 	
 	Connection connection;
-	
-	public static void main(String[] args) throws Exception {
-		
-	}
+
 	
 	public Connection connect() throws SQLException {
 		
+		
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(DbSettings.URL, DbSettings.USERNAME, DbSettings.PASSWORD);
+			connection  = DriverManager.getConnection(DbSettings.URL, DbSettings.USERNAME, DbSettings.PASSWORD);
 			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace(System.out);
 		}
-		
-		
+
 		
 		return connection;
 		

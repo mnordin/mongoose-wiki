@@ -28,8 +28,12 @@ public class Article {
 			Statement query = connection.connect().createStatement();
 			ResultSet result = query.executeQuery("SELECT * FROM article WHERE id = "+ id);
 			
-			article.add(result.getNString("title"));
-			article.add(result.getNString("body"));
+			while (result.next()) {
+				article.add(result.getString("title"));
+				article.add(result.getString("body"));
+			}
+			
+			connection.disconnect();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

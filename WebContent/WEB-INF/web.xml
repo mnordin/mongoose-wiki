@@ -39,4 +39,14 @@
     <servlet-name>articleTest</servlet-name>
     <url-pattern>/articleTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ArticleTest</display-name>
+    <servlet-name>ArticleTest</servlet-name>
+    <servlet-class>se.kyh.wiki.ArticleTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArticleTest</servlet-name>
+    <url-pattern>/ArticleTest</url-pattern>
+  </servlet-mapping>
 </web-app>
