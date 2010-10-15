@@ -41,11 +41,8 @@ public class ArticleServlet extends HttpServlet {
 		if (urlFragments.get(0).equals("view")) {
 			
 			Article article = new Article(urlFragments.get(1).toString());
-			
 			request.setAttribute("article", article);
-			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view.jsp");
-			
 			dispatcher.forward(request, response);
 			
 		}
