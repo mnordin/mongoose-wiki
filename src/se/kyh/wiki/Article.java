@@ -20,9 +20,9 @@ public class Article {
 	
 	public Article(String title) {
 		this.setTitle(title);
-		ArrayList<String> article = this.getArticleByTitle(title);
-		this.setId(Integer.valueOf((article.get(0))).intValue());
-		this.setBody(article.get(1));
+		String body = this.getArticleBodyByTitle(title);
+		this.setId(0);
+		this.setBody(body);
 	}
 
 	private ArrayList<String> getArticleById(int id){
@@ -30,7 +30,7 @@ public class Article {
 		ArrayList<String> article = new ArrayList<String>();
 		try {
 			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT * FROM article WHERE id = "+ id);
+			ResultSet result = query.executeQuery("SELECT title, body FROM article WHERE id = "+ id);
 			
 			while (result.next()) {
 				article.add(result.getString("title"));
@@ -48,16 +48,15 @@ public class Article {
 		
 	}
 	
-	private ArrayList<String> getArticleByTitle(String title){
+	private String getArticleBodyByTitle(String title){
 		DbConnection connection = new DbConnection();
-		ArrayList<String> article = new ArrayList<String>();
+		String body = null;
 		try {
 			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT * FROM article WHERE title = "+ title);
+			ResultSet result = query.executeQuery("SELECT body FROM article WHERE title = '" + title + "'");
 			
 			while (result.next()) {
-				article.add(result.getString("id"));
-				article.add(result.getString("body"));
+				body = result.getString("body");
 			}
 			
 			connection.disconnect();
@@ -67,7 +66,7 @@ public class Article {
 			e.printStackTrace();
 		}
 		
-		return article;
+		return body;
 		
 	}
 	

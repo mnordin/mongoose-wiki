@@ -28,7 +28,7 @@ public class ArticleServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
-		String pathInfo = request.getPathInfo().trim();
+		String pathInfo = request.getPathInfo();
 		pathInfo = pathInfo.substring(1);
 		
 		String[] tempUrlFragments = pathInfo.split("[/]");
@@ -40,7 +40,7 @@ public class ArticleServlet extends HttpServlet {
 		
 		if (urlFragments.get(0).equals("view")) {
 			
-			Article article = new Article(urlFragments.get(1));
+			Article article = new Article(urlFragments.get(1).toString());
 			
 			request.setAttribute("article", article);
 			
