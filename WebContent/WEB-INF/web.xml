@@ -19,4 +19,24 @@
     <servlet-name>Wiki</servlet-name>
     <url-pattern>/Wiki</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>test</display-name>
+    <servlet-name>test</servlet-name>
+    <servlet-class>se.kyh.wiki.test</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>articleTest</display-name>
+    <servlet-name>articleTest</servlet-name>
+    <servlet-class>se.kyh.wiki.articleTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>articleTest</servlet-name>
+    <url-pattern>/articleTest</url-pattern>
+  </servlet-mapping>
 </web-app>
