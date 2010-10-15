@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-
-
 public class Article {
 	
 	private int id;
@@ -16,12 +13,19 @@ public class Article {
 	
 	public Article(int id) {
 		this.setId(id);
-		ArrayList<String> article = this.getArticle(id);
+		ArrayList<String> article = this.getArticleById(id);
 		this.setTitle(article.get(0));
 		this.setBody(article.get(1));
 	}
 	
-	private ArrayList<String> getArticle(int id){
+	public Article(String title) {
+		this.setTitle(title);
+		ArrayList<String> article = this.getArticleByTitle(title);
+		this.setId(Integer.valueOf((article.get(0))).intValue());
+		this.setBody(article.get(1));
+	}
+
+	private ArrayList<String> getArticleById(int id){
 		DbConnection connection = new DbConnection();
 		ArrayList<String> article = new ArrayList<String>();
 		try {
@@ -30,6 +34,29 @@ public class Article {
 			
 			while (result.next()) {
 				article.add(result.getString("title"));
+				article.add(result.getString("body"));
+			}
+			
+			connection.disconnect();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return article;
+		
+	}
+	
+	private ArrayList<String> getArticleByTitle(String title){
+		DbConnection connection = new DbConnection();
+		ArrayList<String> article = new ArrayList<String>();
+		try {
+			Statement query = connection.connect().createStatement();
+			ResultSet result = query.executeQuery("SELECT * FROM article WHERE title = "+ title);
+			
+			while (result.next()) {
+				article.add(result.getString("id"));
 				article.add(result.getString("body"));
 			}
 			

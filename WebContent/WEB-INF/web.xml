@@ -11,23 +11,13 @@
   </welcome-file-list>
   <servlet>
     <description></description>
-    <display-name>Wiki</display-name>
-    <servlet-name>Wiki</servlet-name>
-    <servlet-class>se.kyh.wiki.Wiki</servlet-class>
+    <display-name>ArticleServlet</display-name>
+    <servlet-name>ArticleServlet</servlet-name>
+    <servlet-class>se.kyh.wiki.ArticleServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Wiki</servlet-name>
-    <url-pattern>/Wiki</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>test</display-name>
-    <servlet-name>test</servlet-name>
-    <servlet-class>se.kyh.wiki.test</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>test</servlet-name>
-    <url-pattern>/test</url-pattern>
+    <servlet-name>ArticleServlet</servlet-name>
+    <url-pattern>/article/*</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -38,15 +28,5 @@
   <servlet-mapping>
     <servlet-name>articleTest</servlet-name>
     <url-pattern>/articleTest</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ArticleTest</display-name>
-    <servlet-name>ArticleTest</servlet-name>
-    <servlet-class>se.kyh.wiki.ArticleTest</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ArticleTest</servlet-name>
-    <url-pattern>/ArticleTest</url-pattern>
   </servlet-mapping>
 </web-app>
