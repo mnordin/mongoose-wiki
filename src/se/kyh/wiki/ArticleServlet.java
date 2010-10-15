@@ -27,13 +27,16 @@ public class ArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		PrintWriter out = response.getWriter();
+		
 		String pathInfo;
 		String[] tempUrlFragments;
 		ArrayList<String> urlFragments = new ArrayList<String>();
 		
 		if ((pathInfo = request.getPathInfo()) != null) {
 			
-			pathInfo = pathInfo.substring(1);
+			pathInfo = pathInfo.substring(1); 
 			
 			tempUrlFragments = pathInfo.split("[/]");
 			
@@ -46,11 +49,11 @@ public class ArticleServlet extends HttpServlet {
 			urlFragments.add("view");
 			urlFragments.add("start");
 		}
-			
 		
 		if (urlFragments.get(0).equals("view")) {
-			
+
 			Article article = new Article(urlFragments.get(1).toString());
+
 			request.setAttribute("article", article);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view.jsp");
 			dispatcher.forward(request, response);
