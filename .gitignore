@@ -1,2 +1,4 @@
 .settings/
 build/classes/se/kyh/wiki/DbSettings.class
+src/se/kyh/wiki/DbSettings.java
+WebContent/META-INF/MANIFEST.MF
