@@ -19,6 +19,7 @@ public class Wikitranslator {
 		translations.add(new Translation(Pattern.compile("\\[i\\](.+)\\[/i\\]"), "<em>", "</em>"));
 		translations.add(new Translation(Pattern.compile("\n\\*\\p{Blank}+(.+)"), "\n<li>", "</li>"));
 		translations.add(new Translation(Pattern.compile("\\[(\\S+)\\p{Blank}+(.*)\\]"), "<a href=\"$1\">$2</a>"));
+		translations.add(new Translation(Pattern.compile("\\[\\[(.*)\\]\\]"), "<a href=\"/mongoose-wiki/article/view/$1\">$1</a>"));
 		
 	}
 	
