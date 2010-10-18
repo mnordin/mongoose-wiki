@@ -36,7 +36,7 @@ public class ArticleServlet extends HttpServlet {
 		
 		if ((pathInfo = request.getPathInfo()) != null) {
 			
-			pathInfo = pathInfo.substring(1); // Ta bort första slashet!!
+			pathInfo = pathInfo.substring(1); 
 			
 			tempUrlFragments = pathInfo.split("[/]");
 			
@@ -51,13 +51,11 @@ public class ArticleServlet extends HttpServlet {
 		}
 		
 		if (urlFragments.get(0).equals("view")) {
-			
-			Article article = new Article(urlFragments.get(1));
-			
+
+			Article article = new Article(urlFragments.get(1).toString());
+
 			request.setAttribute("article", article);
-			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view.jsp");
-			
 			dispatcher.forward(request, response);
 			
 		}

@@ -83,7 +83,8 @@ public class Article {
 		this.title = title;
 	}
 	public String getBody() {
-		return body;
+		Wikitranslator wikitext = new Wikitranslator();
+		return wikitext.translate(body);
 	}
 	public void setBody(String body) {
 		this.body = body;
