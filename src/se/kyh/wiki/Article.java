@@ -24,6 +24,12 @@ public class Article {
 		this.setId(0);
 		this.setBody(body);
 	}
+	
+	public Article(int id, String title, String body) {
+		this.setId(id);
+		this.setTitle(title);
+		this.setBody(body);
+	}
 
 	private ArrayList<String> getArticleById(int id){
 		DbConnection connection = new DbConnection();
@@ -90,6 +96,8 @@ public class Article {
 		this.body = body;
 	}
 	
-	
+	public boolean equals(Article otherArticle) {
+		return this.getId() == otherArticle.getId();
+	}
 
 }
