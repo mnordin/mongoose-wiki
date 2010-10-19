@@ -21,16 +21,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>articleTest</display-name>
-    <servlet-name>articleTest</servlet-name>
-    <servlet-class>se.kyh.wiki.articleTest</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>articleTest</servlet-name>
-    <url-pattern>/articleTest</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>SearchServlet</display-name>
     <servlet-name>SearchServlet</servlet-name>
     <servlet-class>se.kyh.wiki.SearchServlet</servlet-class>
