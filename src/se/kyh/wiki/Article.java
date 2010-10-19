@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import se.kyh.wiki.db.ArticleDAO;
 import se.kyh.wiki.db.DbConnection;
 
 public class Article {
@@ -12,71 +13,16 @@ public class Article {
 	private int id;
 	private String title;
 	private String body;
-	
-	public Article(int id) {
-		this.setId(id);
-		ArrayList<String> article = this.getArticleById(id);
-		this.setTitle(article.get(0));
-		this.setBody(article.get(1));
-	}
-	
-	public Article(String title) {
-		this.setTitle(title);
-		String body = this.getArticleBodyByTitle(title);
-		this.setId(0);
-		this.setBody(body);
-	}
-	
+			
 	public Article(int id, String title, String body) {
 		this.setId(id);
 		this.setTitle(title);
 		this.setBody(body);
 	}
 
-	private ArrayList<String> getArticleById(int id){
-		DbConnection connection = new DbConnection();
-		ArrayList<String> article = new ArrayList<String>();
-		try {
-			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT title, body FROM article WHERE id = "+ id);
-			
-			while (result.next()) {
-				article.add(result.getString("title"));
-				article.add(result.getString("body"));
-			}
-			
-			connection.disconnect();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return article;
-		
-	}
 	
-	private String getArticleBodyByTitle(String title){
-		DbConnection connection = new DbConnection();
-		String body = null;
-		try {
-			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT body FROM article WHERE title = '" + title + "'");
-			
-			while (result.next()) {
-				body = result.getString("body");
-			}
-			
-			connection.disconnect();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return body;
-		
-	}
+	
+	
 	
 	public int getId() {
 		return id;

@@ -62,9 +62,9 @@ public class SearchDAO {
 		
 		//remove duplicates
 		for (Article articleByBody : articlesByBody) {
-			if (!searchResult.contains(articleByBody)) {
+			//if (!searchResult.contains(articleByBody)) {
 				this.search.addResult(articleByBody);
-			}
+			//}
 		}
 		
 		return this.search;
