@@ -1,5 +1,5 @@
 .settings/
 .classpath
-build/classes/se/kyh/wiki/DbSettings.class
 src/se/kyh/wiki/DbSettings.java
+build/classes/se/kyh/wiki/DbSettings.class
 WebContent/META-INF/MANIFEST.MF
