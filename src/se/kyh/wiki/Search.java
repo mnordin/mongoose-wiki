@@ -6,6 +6,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import se.kyh.wiki.db.DbConnection;
+
 public class Search {
 	
 	private ArticleList articles = new ArticleList();
@@ -20,7 +22,7 @@ public class Search {
 		
 		try {
 
-			// Title sšk
+			// Title sï¿½k
 			Statement titleQuery = connection.connect().createStatement();
 			ResultSet titleResult = titleQuery.executeQuery("SELECT id, title, body " +
 					"FROM article " +
@@ -33,7 +35,7 @@ public class Search {
 				articlesByTitle.add(new Article(id, title, body));
 			}
 			
-			// Body sšk
+			// Body sï¿½k
 			Statement bodyQuery = connection.connect().createStatement();
 			ResultSet bodyResult = bodyQuery.executeQuery("SELECT id, title, body " +
 					"FROM article " +
