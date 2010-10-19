@@ -21,9 +21,10 @@ public class Wikitranslator {
 	}
 	
 	public String translate(String articleBody) {
-		
+
 		for (Translation translation : translations) {
 			articleBody = translation.translate(articleBody);
+
 		}
 		
 		return articleBody;
