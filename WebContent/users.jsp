@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="ISO-8859-1"%>
+<% String message = (String)request.getAttribute("message"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +14,8 @@
 	</div>
 	<div id="content">
 		<h2>Registry</h2>
+		
+		<p><%= message %></p>
 		
 		<form action="" method="post">
 			<fieldset>

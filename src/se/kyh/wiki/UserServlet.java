@@ -28,6 +28,7 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		request.setAttribute("message", "E-mail och lösenordsfälten är obligatoriska");
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
 		
@@ -38,7 +39,25 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		String firstName = (String)request.getParameter("first_name");
+		String lastName = (String)request.getParameter("last_name");
+		String email = (String)request.getParameter("email");
+		String password = (String)request.getParameter("password");
+		
+		if (email != null && password != null) {
+			User newUser = new User(firstName, lastName, email, password);
+			if (newUser.register()) {
+				request.setAttribute("message", firstName + " " + lastName + " är registrerad");
+			} else {
+				request.setAttribute("message", "Du kunde inte registera dig");
+			}
+		}
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
+		
+		dispatcher.forward(request, response);
+		
 	}
 
 }

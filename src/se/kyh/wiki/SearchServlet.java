@@ -31,8 +31,11 @@ public class SearchServlet extends HttpServlet {
 		String searchQuery = null;
 		
 		searchQuery = request.getParameter("q");
+		
 		if (searchQuery == null) {
-			// ingen sï¿½kning, formulï¿½ret i search.jsp visas
+
+			// ingen sškning, formulŠret i search.jsp visas
+			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/search.jsp");
 			
 			dispatcher.forward(request, response);
@@ -44,14 +47,12 @@ public class SearchServlet extends HttpServlet {
 
 			// sï¿½kresultat
 			request.setAttribute("searchQuery", searchQuery);
+			
 			request.setAttribute("searchResult", search.getResult());
 			
-			
-			//request.setAttribute("articles", articles);
-			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchResult.jsp");
-			dispatcher.forward(request, response);
 			
+			dispatcher.forward(request, response);
 			
 		}
 		
