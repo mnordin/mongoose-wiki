@@ -25,6 +25,9 @@ public class TestTranslation extends TestCase {
 		
 		originals.add("asd[http://wikibooks.org/wiki/How_to_find_a_book How to find a book]");
 		expecteds.add("asd<a href=\"http://wikibooks.org/wiki/How_to_find_a_book\">How to find a book</a>");
+
+		originals.add("asd[[start]]");
+		expecteds.add("asd<a href=\"/Article/view/start\">start</a>");
 		
 		originals.add("qwerty\n" +
 				"* list item 1\n" +
