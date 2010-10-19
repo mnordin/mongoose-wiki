@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import se.kyh.wiki.db.DbConnection;
+
 public class User {
 	
 	private int id;
@@ -19,8 +21,6 @@ public class User {
 	
 	public User(int id) {
 		
-		
-		//super(id, firstName, lastName, email, password);
 	}
 	
 	public User(String firstName, String lastName, String email, String password) {

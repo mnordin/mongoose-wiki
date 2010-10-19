@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import se.kyh.wiki.db.DbConnection;
+
 public class Article {
 	
 	private int id;
