@@ -2,12 +2,15 @@ package se.kyh.wiki;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import se.kyh.wiki.db.ArticleDAO;
 
 /**
  * Servlet implementation class Search
@@ -42,13 +45,13 @@ public class SearchServlet extends HttpServlet {
 			
 		} else {
 			// s�kning �r k�rd, hitta alla artiklar som tr�ffas
-			
-			Search search = new Search(searchQuery);
+
+			List<Article> articles = ArticleDAO.INSTANCE.getArticlesBySearchQuery(searchQuery);
 
 			// s�kresultat
 			request.setAttribute("searchQuery", searchQuery);
 			
-			request.setAttribute("searchResult", search.getResult());
+			request.setAttribute("searchResult", articles);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchResult.jsp");
 			

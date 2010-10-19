@@ -19,9 +19,14 @@ public class Article {
 		this.setTitle(title);
 		this.setBody(body);
 	}
-
 	
-	
+	public Article(ResultSet resultset) throws SQLException {
+		this.setId(resultset.getInt("id"));
+		// OBS spara denna tills det bekräftat går att parsa id som getInt()
+		//int id = Integer.parseInt(bodyResult.getString("id"));
+		this.setTitle(resultset.getString("title"));
+		this.setBody(resultset.getString("body"));
+	}
 	
 	
 	public int getId() {

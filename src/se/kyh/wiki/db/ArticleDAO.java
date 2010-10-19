@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import se.kyh.wiki.Article;
 
@@ -39,16 +40,15 @@ public class ArticleDAO {
 		return article;
 	}
 	
-	private Article getArticleById(int id){
+	public Article getArticleById(int id){
 		DbConnection connection = new DbConnection();
 		Article article = null;
 		try {
 			Statement query = connection.connect().createStatement();
-			ResultSet result = query.executeQuery("SELECT title, body FROM article WHERE id = "+ id);
+			ResultSet result = query.executeQuery("SELECT * FROM article WHERE id = "+ id);
 			
 			while (result.next()) {
-				String title = (result.getString("title"));
-				String body = (result.getString("body"));
+				article = new Article(result);
 			}
 			
 			connection.disconnect();
@@ -60,6 +60,55 @@ public class ArticleDAO {
 		
 		return article;
 		
+	}
+	
+	public List<Article> getArticlesBySearchQuery(String searchQuery) {
+		List<Article> articlesByTitle = new ArrayList<Article>();
+		List<Article> articlesByBody = new ArrayList<Article>();
+		List<Article> articles = new ArrayList<Article>();
+		
+		DbConnection connection = new DbConnection();
+		
+		try {
+
+			// Title sök
+			Statement titleQuery = connection.connect().createStatement();
+			ResultSet titleResult = titleQuery.executeQuery("SELECT id, title, body " +
+					"FROM article " +
+					"WHERE title LIKE '%"+ searchQuery +"%'");
+			
+			while (titleResult.next()) {
+				articlesByTitle.add(new Article(titleResult));
+			}
+			
+			// Body sök
+			Statement bodyQuery = connection.connect().createStatement();
+			ResultSet bodyResult = bodyQuery.executeQuery("SELECT id, title, body " +
+					"FROM article " +
+					"WHERE body LIKE '%"+ searchQuery +"%'");
+			
+			while (bodyResult.next()) {
+				articlesByBody.add(new Article(bodyResult));
+			}
+			
+			
+			connection.disconnect();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		articles.addAll(articlesByTitle);
+		
+		//remove duplicates
+		// TODO bugg i if-satsen, den hajar inte dubletter utan lägger till allting igen
+		for (Article articleByBody : articlesByBody) {
+			if (!articlesByTitle.contains(articleByBody)) {
+				articles.add(articleByBody);
+			}
+		}
+		
+		return articles;
 	}
 	
 }
