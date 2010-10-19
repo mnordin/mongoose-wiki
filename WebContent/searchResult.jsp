@@ -16,11 +16,6 @@
 		<h1>Mongoose wiki</h1>
 	</div>
 	<div id="content">
-		<ul id = "article_menu">
-			<li>
-			view
-			</li>
-		</ul>
 		<h2>Search result for <%= searchQuery %></h2>
 		
 		<form action="" method="get">
@@ -36,11 +31,11 @@
 			<p>Det finns inget som matchar din sökning. Sök igen!</p>
 		<% } %>
 		
-		<% for (int i = 0; i < articles.size(); i++) { %>
+		<% for (Article article : articles) { %>
 		
 		<div id="article_body">
-			<h3 id="article_title"><%= articles.get(i).getTitle() %></h3>
-			<p><%= articles.get(i).getBody() %></p>
+			<h3 id="article_title"><%= article.getTitle() %></h3>
+			<p><%= article.getBody() %></p>
 		</div>	
 		
 		<% } %>

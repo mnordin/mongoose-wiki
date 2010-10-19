@@ -23,6 +23,13 @@ public class User {
 		//super(id, firstName, lastName, email, password);
 	}
 	
+	public User(String firstName, String lastName, String email, String password) {
+		this.setFirstName(firstName);
+		this.setLastName(lastName);
+		this.setEmail(email);
+		this.setPassword(password);
+	}
+	
 	public User(int id, String firstName, String lastName, String email, String password) {
 		this.setId(id);
 		this.setFirstName(firstName);
@@ -39,10 +46,11 @@ public class User {
 		try {
 			Statement query = connection.connect().createStatement();
 			
-			ResultSet resultSet = query.executeQuery(
-				"INSERT INTO users (first_name, last_name, email, password)" +
+			int registeredId = query.executeUpdate("INSERT INTO user (first_name, last_name, email, password)" +
 				"VALUES('"+ this.getFirstName() +"', '"+ this.getLastName() +"', '"+ this.getEmail() +"', '"+ this.getPassword() +"')"
 			);
+			
+			this.setId(registeredId);
 			
 			result = true;
 			

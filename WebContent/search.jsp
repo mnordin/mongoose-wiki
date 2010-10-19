@@ -13,11 +13,6 @@
 		<h1>Mongoose wiki</h1>
 	</div>
 	<div id="content">
-		<ul id = "article_menu">
-			<li>
-			view
-			</li>
-		</ul>
 		<h2>Search</h2>
 		
 		<form action="" method="get">
@@ -28,8 +23,6 @@
 				<input type="submit" value="Sök" />
 			</fieldset>
 		</form>
-		
-		
 		
 	</div>
 </body>
