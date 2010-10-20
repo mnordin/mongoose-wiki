@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import se.kyh.wiki.db.ArticleDAO;
+
 /**
  * Servlet implementation class ArticleServlet
  */
@@ -52,7 +54,8 @@ public class ArticleServlet extends HttpServlet {
 		
 		if (urlFragments.get(0).equals("view")) {
 
-			Article article = new Article(urlFragments.get(1).toString());
+			
+			Article article = ArticleDAO.INSTANCE.getArticleByTitle(urlFragments.get(1).toString());
 			
 			String jsp = "/view.jsp";
 			

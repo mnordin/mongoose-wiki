@@ -39,4 +39,14 @@
     <servlet-name>PagesServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserServlet</display-name>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>se.kyh.wiki.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/user</url-pattern>
+  </servlet-mapping>
 </web-app>

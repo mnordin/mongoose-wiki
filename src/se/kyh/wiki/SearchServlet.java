@@ -2,12 +2,15 @@ package se.kyh.wiki;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import se.kyh.wiki.db.ArticleDAO;
 
 /**
  * Servlet implementation class Search
@@ -31,27 +34,28 @@ public class SearchServlet extends HttpServlet {
 		String searchQuery = null;
 		
 		searchQuery = request.getParameter("q");
+		
 		if (searchQuery == null) {
-			// ingen sï¿½kning, formulï¿½ret i search.jsp visas
+
+			// ingen sškning, formulŠret i search.jsp visas
+			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/search.jsp");
 			
 			dispatcher.forward(request, response);
 			
 		} else {
 			// sï¿½kning ï¿½r kï¿½rd, hitta alla artiklar som trï¿½ffas
-			
-			Search search = new Search(searchQuery);
+
+			List<Article> articles = ArticleDAO.INSTANCE.getArticlesBySearchQuery(searchQuery);
 
 			// sï¿½kresultat
 			request.setAttribute("searchQuery", searchQuery);
-			request.setAttribute("searchResult", search.getResult());
 			
-			
-			//request.setAttribute("articles", articles);
+			request.setAttribute("searchResult", articles);
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/searchResult.jsp");
-			dispatcher.forward(request, response);
 			
+			dispatcher.forward(request, response);
 			
 		}
 		

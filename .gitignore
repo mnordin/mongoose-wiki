@@ -1,6 +1,9 @@
 *.ignorethis
 .settings/
+.classpath
 .classpath/
-build/classes/se/kyh/wiki/DbSettings.class
 src/se/kyh/wiki/DbSettings.java
+src/se/kyh/wiki/db/DbSettings.java
+build/classes/se/kyh/wiki/DbSettings.class
+build/classes/se/kyh/wiki/db/DbSettings.class
 WebContent/META-INF/MANIFEST.MF
