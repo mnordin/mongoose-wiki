@@ -22,7 +22,7 @@ public class Article {
 	
 	public Article(ResultSet resultset) throws SQLException {
 		this.setId(resultset.getInt("id"));
-		// OBS spara denna tills det bekrŠftat gŒr att parsa id som getInt()
+		// OBS spara denna tills det bekrï¿½ftat gï¿½r att parsa id som getInt()
 		//int id = Integer.parseInt(bodyResult.getString("id"));
 		this.setTitle(resultset.getString("title"));
 		this.setBody(resultset.getString("body"));
@@ -44,6 +44,9 @@ public class Article {
 	public String getBody() {
 		Wikitranslator wikitext = new Wikitranslator();
 		return wikitext.translate(body);
+	}
+	public String getNakedBody() {
+		return this.body;
 	}
 	public void setBody(String body) {
 		this.body = body;

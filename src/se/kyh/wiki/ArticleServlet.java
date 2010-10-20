@@ -38,7 +38,7 @@ public class ArticleServlet extends HttpServlet {
 		
 		if ((pathInfo = request.getPathInfo()) != null) {
 			
-			pathInfo = pathInfo.substring(1); 
+			pathInfo = pathInfo.substring(1);
 			
 			tempUrlFragments = pathInfo.split("[/]");
 			
@@ -67,6 +67,18 @@ public class ArticleServlet extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 			dispatcher.forward(request, response);
 			
+		} else if (urlFragments.get(0).equals("edit")){
+			Article article = ArticleDAO.INSTANCE.getArticleByTitle(urlFragments.get(1).toString());
+			String jsp = "/edit.jsp";
+			
+			if (article == null) {
+				jsp = "/404.jsp";
+			}
+			
+			request.setAttribute("article", article);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
+			System.out.println(dispatcher.toString());
+			dispatcher.forward(request, response);
 		}
 	
 	}

@@ -1,5 +1,7 @@
+*.ignorethis
 .settings/
 .classpath
+.classpath/
 src/se/kyh/wiki/DbSettings.java
 src/se/kyh/wiki/db/DbSettings.java
 build/classes/se/kyh/wiki/DbSettings.class
