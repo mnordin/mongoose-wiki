@@ -1,3 +1,4 @@
+*.ignorethis
 .settings/
 .classpath/
 build/classes/se/kyh/wiki/DbSettings.class
