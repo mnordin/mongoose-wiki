@@ -77,7 +77,6 @@ public class ArticleServlet extends HttpServlet {
 			
 			request.setAttribute("article", article);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
-			System.out.println(dispatcher.toString());
 			dispatcher.forward(request, response);
 		}
 	
