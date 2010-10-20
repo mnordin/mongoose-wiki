@@ -16,7 +16,7 @@
 	<div id="content">
 		<ul id = "article_menu">
 			<li>
-			view
+				<a href="/mongoose-wiki/article/edit/<%=article.getTitle()%>">Ändra artikel</a>
 			</li>
 		</ul>
 		<h2 id="article_title"><%=article.getTitle() %></h2>

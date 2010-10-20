@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import se.kyh.wiki.db.ArticleDAO;
+import se.kyh.wiki.db.UserDAO;
 
 /**
  * Servlet implementation class ArticleServlet
@@ -71,6 +72,24 @@ public class ArticleServlet extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
 			dispatcher.forward(request, response);
 			
+		} else if (urlFragments.get(0).equals("edit")){
+			
+			if (request.getSession().getAttribute("loggedIn") != null){
+			
+			
+				Article article = ArticleDAO.INSTANCE.getArticleByTitle(urlFragments.get(1).toString());
+				String jsp = "/edit.jsp";
+				
+				if (article == null) {
+					jsp = "/404.jsp";
+				}
+				request.setAttribute("message", "Här kan du uppdatera artikeln");
+				request.setAttribute("article", article);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
+				dispatcher.forward(request, response);
+			} else {
+				response.sendRedirect("/mongoose-wiki/user");
+			}
 		}
 	
 	}
@@ -79,7 +98,30 @@ public class ArticleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		if ((request.getParameter("update_article") != null)) {
+			// The user wishes to update an article!
+			
+			int id = Integer.parseInt(request.getParameter("id"));
+			String title = (String)request.getParameter("title");
+			String body = (String)request.getParameter("body");
+			
+			if (id > 0) {
+				if (ArticleDAO.INSTANCE.updateArticle(id,title,body)) {
+					request.setAttribute("message", "Artikel: "+title + " �r uppdaterad");
+					String url = "/mongoose-wiki/article/view/"+title;
+					response.sendRedirect(url);
+				} else {
+					request.setAttribute("message", "Det har blivit något fel. Artikel: "+title + " �r INTE uppdaterad");
+				}
+			} else {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/view.jsp");
+				
+				dispatcher.forward(request, response);
+			}
+			
+			
+		
+		}
 	}
 
 }
