@@ -31,7 +31,7 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		request.setAttribute("message", "E-mail och lšsenordsfŠlten Šr obligatoriska");
+		request.setAttribute("message", "E-mail och lï¿½senordsfï¿½lten ï¿½r obligatoriska");
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
 		
@@ -54,7 +54,7 @@ public class UserServlet extends HttpServlet {
 			
 			if (email != null && password != null) {
 				if (UserDAO.INSTANCE.register(firstName, lastName, email, password)) {
-					request.setAttribute("message", firstName + " " + lastName + " Šr registrerad");
+					request.setAttribute("message", firstName + " " + lastName + " ï¿½r registrerad");
 				} else {
 					request.setAttribute("message", "Du kunde inte registera dig");
 				}
@@ -79,7 +79,7 @@ public class UserServlet extends HttpServlet {
 				response.sendRedirect("/mongoose-wiki/");
 				
 			} else {
-				request.setAttribute("message", "Du fyllde i fel uppgifter, fšrsšk igen!");
+				request.setAttribute("message", "Du fyllde i fel uppgifter, fï¿½rsï¿½k igen!");
 				
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
 				
