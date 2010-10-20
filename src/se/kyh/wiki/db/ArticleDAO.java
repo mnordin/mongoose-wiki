@@ -64,14 +64,14 @@ public class ArticleDAO {
 	}
 	
 	
-	public boolean updateArticle(Article article) {
+	public boolean updateArticle(int id, String title, String body) {
 		DbConnection connection = new DbConnection();
 		boolean success = false;
 		try {
 			
 			Statement query = connection.connect().createStatement();
 			int numberOfRows = query.executeUpdate("UPDATE article " +
-					"SET body='" + article.getBody() + "' WHERE id=" + article.getId());
+					"SET body='" + body + "' WHERE id=" + id);
 			
 			if (numberOfRows == 1) {
 				success = true;
