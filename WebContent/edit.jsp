@@ -23,8 +23,10 @@
 			<form action="" method="post">
 				<fieldset>
 					<legend><%= article.getTitle() %></legend>
+					<input type="hidden" name="title" value="<%= article.getTitle() %>" />
+					<input type="hidden" name="id" value="<%= article.getId() %>" />
 					<label for="body">Text</label>
-					<textarea name="body" id="body" rows="30" cols="100"><%= article.getNakedBody() %></textarea>
+					<textarea name="body" id="body" rows="20" cols="100"><%= article.getNakedBody() %></textarea>
 					<input type="submit" name="update_article" value="Spara" />
 				</fieldset>
 			</form>

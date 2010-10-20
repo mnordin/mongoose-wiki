@@ -40,6 +40,7 @@ public class ArticleDAO {
 		return article;
 	}
 	
+	
 	public Article getArticleById(int id){
 		DbConnection connection = new DbConnection();
 		Article article = null;
@@ -62,6 +63,31 @@ public class ArticleDAO {
 		
 	}
 	
+	
+	public boolean updateArticle(int id, String title, String body) {
+		DbConnection connection = new DbConnection();
+		boolean success = false;
+		try {
+			
+			Statement query = connection.connect().createStatement();
+			int numberOfRows = query.executeUpdate("UPDATE article " +
+					"SET body='" + body + "' WHERE id=" + id);
+			
+			if (numberOfRows == 1) {
+				success = true;
+			}
+			
+			connection.disconnect();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return success;
+	}
+	
+	
 	public List<Article> getArticlesBySearchQuery(String searchQuery) {
 		List<Article> articlesByTitle = new ArrayList<Article>();
 		List<Article> articlesByBody = new ArrayList<Article>();
@@ -71,7 +97,7 @@ public class ArticleDAO {
 		
 		try {
 
-			// Title sšk
+			// Title sï¿½k
 			Statement titleQuery = connection.connect().createStatement();
 			ResultSet titleResult = titleQuery.executeQuery("SELECT id, title, body " +
 					"FROM article " +
@@ -81,7 +107,7 @@ public class ArticleDAO {
 				articlesByTitle.add(new Article(titleResult));
 			}
 			
-			// Body sšk
+			// Body sï¿½k
 			Statement bodyQuery = connection.connect().createStatement();
 			ResultSet bodyResult = bodyQuery.executeQuery("SELECT id, title, body " +
 					"FROM article " +
@@ -101,7 +127,7 @@ public class ArticleDAO {
 		articles.addAll(articlesByTitle);
 		
 		//remove duplicates
-		// TODO bugg i if-satsen, den hajar inte dubletter utan lŠgger till allting igen
+		// TODO bugg i if-satsen, den hajar inte dubletter utan lï¿½gger till allting igen
 		for (Article articleByBody : articlesByBody) {
 			if (!articlesByTitle.contains(articleByBody)) {
 				articles.add(articleByBody);
@@ -110,5 +136,7 @@ public class ArticleDAO {
 		
 		return articles;
 	}
+
+	
 	
 }
