@@ -35,8 +35,8 @@ public class ArticleServlet extends HttpServlet {
 		ArrayList<String> urlFragments = new ArrayList<String>();
 		
 		if ((pathInfo = request.getPathInfo()) != null) {
-			System.out.println(pathInfo);
-			pathInfo = pathInfo.substring(1); 
+			
+			pathInfo = pathInfo.substring(1);
 			
 			tempUrlFragments = pathInfo.split("[/]");
 			
