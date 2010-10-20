@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.http.HttpSession;
+
 import se.kyh.wiki.db.DbConnection;
 
 public class User {
@@ -38,31 +40,7 @@ public class User {
 		this.setPassword(password);
 	}
 	
-	public boolean register() {
-		boolean result = false;
-		
-		DbConnection connection = new DbConnection();
-				
-		try {
-			Statement query = connection.connect().createStatement();
-			
-			int registeredId = query.executeUpdate("INSERT INTO user (first_name, last_name, email, password)" +
-				"VALUES('"+ this.getFirstName() +"', '"+ this.getLastName() +"', '"+ this.getEmail() +"', '"+ this.getPassword() +"')"
-			);
-			
-			this.setId(registeredId);
-			
-			result = true;
-			
-			connection.disconnect();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
+	
 	
 	public boolean isLoggedIn() {
 		return true;

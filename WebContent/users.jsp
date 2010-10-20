@@ -13,7 +13,8 @@
 		<h1>Mongoose wiki</h1>
 	</div>
 	<div id="content">
-		<h2>Registry</h2>
+	
+		<h2>Registrera</h2>
 		
 		<p><%= message %></p>
 		
@@ -28,7 +29,20 @@
 				<input name="email" id="email" placeholder="Sök" />
 				<label for="password">Lösenord</label>
 				<input name="password" id="password" placeholder="Sök" />
-				<input type="submit" value="Registrera ny användare" />
+				<input type="submit" name="register" value="Registrera ny användare" />
+			</fieldset>
+		</form>
+		
+		<h2>Befintlig användare? Logga in här</h2>
+		
+		<form action="" method="post">
+			<fieldset>
+				<legend>Logga in</legend>
+				<label for="email">Email</label>
+				<input type="text" name="email" id="email" placeholder="E-mailadress" />
+				<label for="password">Lösenord</label>
+				<input type="password" name="password" id="password" placeholder="Lösenord" />
+				<input type="submit" name="login" value="Logga in" />
 			</fieldset>
 		</form>
 		
