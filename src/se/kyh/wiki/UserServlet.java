@@ -73,20 +73,18 @@ public class UserServlet extends HttpServlet {
 			boolean login = UserDAO.INSTANCE.logIn(email, password);
 			
 			if (login) {
-				SessionBean sessionBean = new SessionBean();
-				sessionBean.setLoggedIn(true);
-				//request.getSession().setAttribute("loggedIn", sessionBean.isLoggedIn());
-				request.setAttribute("message", "Du Šr inloggad med "+email+" och "+password+"!");
-				System.out.println("Bara om jag syns ska session returnera true!!!");
-				//request.setAttribute("message", request.getSession().getAttribute("loggedIn").toString());
+				SessionBean.INSTANCE.setLoggedIn(true);
+				request.getSession().setAttribute("loggedIn", SessionBean.INSTANCE.isLoggedIn());
+				
+				response.sendRedirect("/mongoose-wiki/");
+				
 			} else {
-				System.out.println("Om jag syns ska session returnera false!");
 				request.setAttribute("message", "Du fyllde i fel uppgifter, fšrsšk igen!");
+				
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
+				
+				dispatcher.forward(request, response);
 			}
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/users.jsp");
-			
-			dispatcher.forward(request, response);
 			
 		}
 		
