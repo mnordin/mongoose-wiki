@@ -11,6 +11,7 @@
 <body>
 	<div id="header">
 		<h1>Mongoose wiki</h1>
+		<jsp:include page="main_navigation.jsp" />
 	</div>
 	<div id="content">
 		<ul id = "article_menu">

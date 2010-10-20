@@ -36,6 +36,10 @@ public class ArticleServlet extends HttpServlet {
 		String[] tempUrlFragments;
 		ArrayList<String> urlFragments = new ArrayList<String>();
 		
+		MainNavigation mainNavigation = new MainNavigation();
+
+		request.setAttribute("mainNavigation", mainNavigation);
+		
 		if ((pathInfo = request.getPathInfo()) != null) {
 			
 			pathInfo = pathInfo.substring(1);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<%@page import="se.kyh.wiki.Article" %>
-<%@page import="java.util.ArrayList" %>
+<%@ page import="se.kyh.wiki.Article" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String searchQuery = (String)request.getAttribute("searchQuery"); %>
