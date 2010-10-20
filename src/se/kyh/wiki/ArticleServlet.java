@@ -69,16 +69,23 @@ public class ArticleServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		} else if (urlFragments.get(0).equals("edit")){
-			Article article = ArticleDAO.INSTANCE.getArticleByTitle(urlFragments.get(1).toString());
-			String jsp = "/edit.jsp";
 			
-			if (article == null) {
-				jsp = "/404.jsp";
+			if (request.getSession().getAttribute("loggedIn") != null){
+			
+			
+				Article article = ArticleDAO.INSTANCE.getArticleByTitle(urlFragments.get(1).toString());
+				String jsp = "/edit.jsp";
+				
+				if (article == null) {
+					jsp = "/404.jsp";
+				}
+				request.setAttribute("message", "Här kan du uppdatera artikeln");
+				request.setAttribute("article", article);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
+				dispatcher.forward(request, response);
+			} else {
+				response.sendRedirect("/mongoose-wiki/user");
 			}
-			request.setAttribute("message", "Här kan du uppdatera artikeln");
-			request.setAttribute("article", article);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(jsp);
-			dispatcher.forward(request, response);
 		}
 	
 	}
