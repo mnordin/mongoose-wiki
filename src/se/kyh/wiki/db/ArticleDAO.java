@@ -40,6 +40,7 @@ public class ArticleDAO {
 		return article;
 	}
 	
+	
 	public Article getArticleById(int id){
 		DbConnection connection = new DbConnection();
 		Article article = null;
@@ -61,6 +62,31 @@ public class ArticleDAO {
 		return article;
 		
 	}
+	
+	
+	public boolean updateArticle(Article article) {
+		DbConnection connection = new DbConnection();
+		boolean success = false;
+		try {
+			
+			Statement query = connection.connect().createStatement();
+			int numberOfRows = query.executeUpdate("UPDATE article " +
+					"SET body='" + article.getBody() + "' WHERE id=" + article.getId());
+			
+			if (numberOfRows == 1) {
+				success = true;
+			}
+			
+			connection.disconnect();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return success;
+	}
+	
 	
 	public List<Article> getArticlesBySearchQuery(String searchQuery) {
 		List<Article> articlesByTitle = new ArrayList<Article>();
